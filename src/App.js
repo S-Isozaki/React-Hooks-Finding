@@ -1,12 +1,13 @@
 import Display from "./Display";
-import { useState } from "react";
+import { useRef } from "react";
 
 function App() {
-  const [version, setVersion] = useState(0);
+  const ref = useRef();
   return (
     <>
-      <Display version={version} />
-      <button onClick={() => setVersion(version => version + 1)}>write</button>
+      <Display ref={ref} />
+      <button onClick={() => {ref.current.drawString()}}>write</button>
+      <button onClick={() => {ref.current.clearCanvas()}}>clear</button>
     </>
   );
 };

@@ -1,26 +1,28 @@
 import * as css from './Display.css';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, forwardRef, useImperativeHandle } from 'react';
 
-function Display(props) {
+const Display = forwardRef(function Display(props, ref) {
   var canvasRef = useRef(null);
-  function handleDisplay(e) {
+  function clearCanvas(e) {
     var canvas = canvasRef.current;
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
-  const [str, setStr] = useState("1");
-  useEffect(() => {
+  function drawString() {
     var canvas = canvasRef.current;
     var ctx = canvas.getContext("2d");
-    ctx.fillText(str, 100, 100);
-    setStr(str => str + "0");
-  }, [props.version])
+    ctx.fillText("100", 100, 100);
+  }
+  useImperativeHandle(ref, () => {
+    return {
+      clearCanvas, drawString
+    };
+  });
   return (
     <div id='display'>
       <canvas id='canvas' ref={canvasRef}></canvas>
-      <div id='jumpbutton' onClick={handleDisplay}></div>
     </div>
   );
-};
+});
 
 export default Display;
