@@ -1,12 +1,32 @@
 import Display from "./Display";
 import Timer from "./Timer";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 function App() {
   const displayRef = useRef();
   const timerRef = useRef();
   const [num, setNum] = useState('25');
   var str = generateRandomString(Number(num));
+  var index = 0
+  useEffect(() => {
+    displayRef.current.drawString();
+    window.addEventListener('keydown', (e) => {
+      const char = e.key;
+      if(char === str[index]){
+          displayRef.current.changeColor(index, "red");
+          index++;
+          if(index === length){
+              window.removeEventListener('keydown', (e) => {});
+          }
+      }else{
+          for(;;){
+              displayRef.current.changeColor(index, "gray");
+              if(index === 0) break;
+              index--;
+          }
+      }
+  })
+  }, [str])
   return (
     <>
       <select onChange={e => setNum(e.target.value)}>
