@@ -16,8 +16,8 @@ function App() {
         <option value="200">200</option>
       </select>
       <Timer ref={timerRef} />
-      <Display ref={displayRef} />
-      <button onClick={() => {displayRef.current.drawString(str)}}>write</button>
+      <Display str={str} ref={displayRef} />
+      <button onClick={() => {displayRef.current.drawString()}}>write</button>
       <button onClick={() => {displayRef.current.clearCanvas()}}>clear</button>
       <button onClick={() => {timerRef.current.startTimer()}}>timer start</button>
       <button onClick={() => {timerRef.current.stopTimer()}}>timer stop</button>

@@ -8,10 +8,10 @@ const Display = forwardRef(function Display(props, ref) {
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
-  function drawString(str) {
+  function drawString() {
     var canvas = canvasRef.current;
     var ctx = canvas.getContext("2d");
-    ctx.fillText(str, 100, 100);
+    ctx.fillText(props.str, 100, 100);
   }
   useImperativeHandle(ref, () => {
     return {
