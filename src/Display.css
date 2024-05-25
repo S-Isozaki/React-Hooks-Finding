@@ -2,3 +2,7 @@
   width: 1080px;
   height: 500px;
 }
+@font-face {
+  font-family: 'RobotoMono';
+  src: url(./fonts/RobotoMono-VariableFont_wght.ttf);
+}

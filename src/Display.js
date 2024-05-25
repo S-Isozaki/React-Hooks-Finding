@@ -4,13 +4,13 @@ import { useRef, forwardRef, useImperativeHandle } from 'react';
 const Display = forwardRef(function Display(props, ref) {
   var canvasRef = useRef(null);
   var str = props.str;
-  var numberOfRow = str.length / 25;
-  var charFieldWidth = 10;
-  var charFieldHeight = 15;
+  var charFieldWidth = 20;
+  var charFieldHeight = 40;
   const numberOfColumn = 25;
+  var numberOfRow = Math.floor(str.length / numberOfColumn);
   const leftMargin = 5;
-  const topMargin = 10;
-  const charHeight = 8;
+  const topMargin = 40;
+  const charHeight = 20;
   const decender = 5;
   
   function clearCanvas() {
@@ -19,12 +19,12 @@ const Display = forwardRef(function Display(props, ref) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
   function drawString() {
+    clearCanvas();
     var canvas = canvasRef.current;
     var ctx = canvas.getContext("2d");
     var numberOfRow = Math.floor(str.length / numberOfColumn);
-    ctx.font = toString(charHeight) + "px Roboto Mono";
+    ctx.font = charHeight.toString() + "px RobotoMono";
     ctx.fillStyle = "gray";
-    clearCanvas();
     for(var i = 0; i < numberOfRow; i++){
       for(var j = 0; j < numberOfColumn; j++){
         var index = numberOfColumn * i + j;
@@ -48,7 +48,7 @@ const Display = forwardRef(function Display(props, ref) {
   });
   return (
     <div id='display'>
-      <canvas id='canvas' ref={canvasRef}></canvas>
+      <canvas id='canvas' ref={canvasRef} height="500px" width="1080px"></canvas>
     </div>
   );
 });

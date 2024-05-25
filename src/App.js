@@ -12,6 +12,7 @@ function App() {
     displayRef.current.drawString();
     window.addEventListener('keydown', (e) => {
       const char = e.key;
+      if(e.keyCode < 32 || e.keyCode > 126) return;
       if(char === str[index]){
           displayRef.current.changeColor(index, "red");
           index++;

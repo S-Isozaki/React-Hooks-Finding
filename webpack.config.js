@@ -27,7 +27,17 @@ const config = {
             },
             {
                 test: /\.css$/i,
-                use: ["style-loader", "css-loader"],
+                use: [
+                    {
+                        loader: "style-loader",
+                        options: {
+                            insert: 'head'
+                        }
+                    },
+                    {
+                        loader: "css-loader"
+                    }
+                ],
             },
         ],
     },
